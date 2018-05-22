@@ -21,21 +21,18 @@ public class Game {
 	    board[players.getNumberOfPlayers()] = 0;
 	    score[players.getNumberOfPlayers()] = 0;
 	    currentPlayer = players.getAtPosition(0);
-
 		return true;
 	}
 
 	public void roll(int roll) {
-		System.out.println(currentPlayer + " is the current player");
-		System.out.println("They have rolled a " + roll);
+        printRollIntroduction(roll);
 		
 		if (currentPlayer.isInPenaltyBox()){
 			if (roll % 2 != 0) {
 				isGettingOutOfPenaltyBox = true;
-				
 				System.out.println(currentPlayer + " is getting out of the penalty box");
-				board[currentPlayer.getNumberOfPlayer()] = board[currentPlayer.getNumberOfPlayer()] + roll;
-				if (board[currentPlayer.getNumberOfPlayer()] > 11) board[currentPlayer.getNumberOfPlayer()] = board[currentPlayer.getNumberOfPlayer()] - 12;
+                advanceInBoardAtCurrentPlayerPositions(roll);
+
 				
 				System.out.println(currentPlayer
 						+ "'s new location is " 
@@ -45,13 +42,11 @@ public class Game {
 			} else {
 				System.out.println(currentPlayer + " is not getting out of the penalty box");
 				isGettingOutOfPenaltyBox = false;
-				}
+			}
 			
 		} else {
-		
-			board[currentPlayer.getNumberOfPlayer()] = board[currentPlayer.getNumberOfPlayer()] + roll;
-			if (board[currentPlayer.getNumberOfPlayer()] > 11) board[currentPlayer.getNumberOfPlayer()] = board[currentPlayer.getNumberOfPlayer()] - 12;
-			
+
+            advanceInBoardAtCurrentPlayerPositions(roll);
 			System.out.println(currentPlayer
 					+ "'s new location is " 
 					+ board[currentPlayer.getNumberOfPlayer()]);
@@ -60,6 +55,16 @@ public class Game {
         }
 		
 	}
+
+    private void advanceInBoardAtCurrentPlayerPositions(int roll) {
+        board[currentPlayer.getNumberOfPlayer()] = board[currentPlayer.getNumberOfPlayer()] + roll;
+        if (board[currentPlayer.getNumberOfPlayer()] > 11) board[currentPlayer.getNumberOfPlayer()] = board[currentPlayer.getNumberOfPlayer()] - 12;
+    }
+
+    private void printRollIntroduction(int roll) {
+        System.out.println(currentPlayer + " is the current player");
+        System.out.println("They have rolled a " + roll);
+    }
 
     public boolean wasCorrectlyAnswered() {
 		if (currentPlayer.isInPenaltyBox()){
@@ -101,7 +106,6 @@ public class Game {
 		System.out.println("Question was incorrectly answered");
 		System.out.println(currentPlayer+ " was sent to the penalty box");
 		currentPlayer.setInPenaltyBox(true);
-
         nextPlayer();
 		return true;
 	}
