@@ -19,4 +19,8 @@ public class Roll {
     public String toString() {
         return ""+rollPrimitive;
     }
+
+    public void announceIt() {
+        System.out.println("They have rolled a " + rollPrimitive);
+    }
 }

@@ -44,4 +44,9 @@ public class Player {
                         + score
                         + " Gold Coins.";
     }
+
+    public void announceOwnTurn() {
+        System.out.println(this + " is the current player");
+    }
+
 }
