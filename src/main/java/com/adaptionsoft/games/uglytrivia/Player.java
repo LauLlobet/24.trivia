@@ -21,4 +21,10 @@ public class Player {
     public int getScore() {
         return score;
     }
+
+    public String getStatusString() {
+        return playerName + " now has "
+                        + score
+                        + " Gold Coins.";
+    }
 }

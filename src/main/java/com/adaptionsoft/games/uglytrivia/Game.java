@@ -107,12 +107,9 @@ public class Game {
 			if (isGettingOutOfPenaltyBox) {
 				System.out.println("Answer was correct!!!!");
 				players.getAtPosition(currentPlayerPosition).increaseScoreByOne();
-				System.out.println(players.getAtPosition(currentPlayerPosition)
-						+ " now has "
-						+ players.getAtPosition(currentPlayerPosition).getScore()
-						+ " Gold Coins.");
-				
-				boolean winner = didPlayerWin();
+                printCurrentPlayerStatus();
+
+                boolean winner = didPlayerWin();
 				currentPlayerPosition++;
 				if (currentPlayerPosition == players.getNumberOfPlayers()) currentPlayerPosition = 0;
 				
@@ -129,20 +126,21 @@ public class Game {
 		
 			System.out.println("Answer was corrent!!!!");
             players.getAtPosition(currentPlayerPosition).increaseScoreByOne();
-			System.out.println(players.getAtPosition(currentPlayerPosition)
-					+ " now has "
-					+ players.getAtPosition(currentPlayerPosition).getScore()
-					+ " Gold Coins.");
-			
-			boolean winner = didPlayerWin();
+            printCurrentPlayerStatus();
+
+            boolean winner = didPlayerWin();
 			currentPlayerPosition++;
 			if (currentPlayerPosition == players.getNumberOfPlayers()) currentPlayerPosition = 0;
 			
 			return winner;
 		}
 	}
-	
-	public boolean wrongAnswer(){
+
+    private void printCurrentPlayerStatus() {
+        System.out.println(players.getAtPosition(currentPlayerPosition).getStatusString());
+    }
+
+    public boolean wrongAnswer(){
 		System.out.println("Question was incorrectly answered");
 		System.out.println(players.getAtPosition(currentPlayerPosition)+ " was sent to the penalty box");
 		inPenaltyBox[currentPlayerPosition] = true;
