@@ -17,4 +17,8 @@ public class Player {
     public void increaseScoreByOne() {
         score++;
     }
+
+    public int getScore() {
+        return score;
+    }
 }
