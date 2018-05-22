@@ -24,10 +24,11 @@ public class Game {
 		return true;
 	}
 
-	public void roll(int roll) {
+	public void roll(int rollPrimitive) {
+        Roll roll = new Roll(rollPrimitive);
         printRollIntroduction(roll);
 		if (currentPlayer.isInPenaltyBox()){
-			if (isEven(roll)) {
+			if (roll.isEven()) {
                 getOutOfPenalityBox();
                 advanceCurrentPlayer(roll);
                 askQuesion();
@@ -60,15 +61,15 @@ public class Game {
         questionsSource.askQuestion(boardReal.currentCategory(board[currentPlayer.getNumberOfPlayer()]));
     }
 
-    private void advanceCurrentPlayer(int roll) {
-        board[currentPlayer.getNumberOfPlayer()] = board[currentPlayer.getNumberOfPlayer()] + roll;
+    private void advanceCurrentPlayer(Roll roll) {
+        board[currentPlayer.getNumberOfPlayer()] = board[currentPlayer.getNumberOfPlayer()] + roll.getRollPrimitive();
         if (board[currentPlayer.getNumberOfPlayer()] > 11) board[currentPlayer.getNumberOfPlayer()] = board[currentPlayer.getNumberOfPlayer()] - 12;
         System.out.println(currentPlayer
                 + "'s new location is "
                 + board[currentPlayer.getNumberOfPlayer()]);
     }
 
-    private void printRollIntroduction(int roll) {
+    private void printRollIntroduction(Roll roll) {
         System.out.println(currentPlayer + " is the current player");
         System.out.println("They have rolled a " + roll);
     }
