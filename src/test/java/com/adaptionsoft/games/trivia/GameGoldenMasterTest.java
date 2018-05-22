@@ -11,6 +11,7 @@ import java.util.Random;
 public class GameGoldenMasterTest {
 
     private static final int SEED = 4001;
+    private static final int GAMES_TO_PLAY = 2000;
 
     @Test
 	public void goldenMasterTest() throws Exception {
@@ -18,13 +19,19 @@ public class GameGoldenMasterTest {
 		PrintStream printStream = new PrintStream(os);
 		System.setOut(printStream);
 
-        GameRunnerTest gameRunnerTest = new GameRunnerTest(SEED);
-		gameRunnerTest.run();
-
-		String output = os.toString("UTF8");
+        runGameTimes(GAMES_TO_PLAY);
+        String output = os.toString("UTF8");
 
 		Approvals.verify(output);
 	}
+
+    private void runGameTimes(int times) {
+        while(times > 0) {
+            GameRunnerTest gameRunnerTest = new GameRunnerTest(SEED);
+            gameRunnerTest.run();
+            times--;
+        }
+    }
 
     private class GameRunnerTest {
         private final int seed;
