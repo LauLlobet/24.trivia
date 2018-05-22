@@ -5,13 +5,23 @@ public class Player {
     private final String playerName;
     private int score;
 
+    public boolean isInPenaltyBox() {
+        return inPenaltyBox;
+    }
+
+    public void setInPenaltyBox(boolean inPenaltyBox) {
+        this.inPenaltyBox = inPenaltyBox;
+    }
+
+    boolean inPenaltyBox = false;
+
     public int getNumberOfPlayer() {
         return numberOfPlayer;
     }
 
     private final int numberOfPlayer;
 
-    public Player(String playerName, int score, int numberOfPlayer) {
+    Player(String playerName, int score, int numberOfPlayer) {
         this.playerName = playerName;
         this.score = score;
         this.numberOfPlayer = numberOfPlayer;
