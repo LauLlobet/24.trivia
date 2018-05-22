@@ -1,20 +1,16 @@
 package com.adaptionsoft.games.trivia;
 
-import static org.junit.Assert.*;
-
 import com.adaptionsoft.games.uglytrivia.Game;
 import org.approvaltests.Approvals;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.Locale;
 import java.util.Random;
 
 public class GameGoldenMasterTest {
 
-    private GameRunnerTest gameRunnerTest;
-    private int seed = 4001;
+    private static final int SEED = 4001;
 
     @Test
 	public void goldenMasterTest() throws Exception {
@@ -22,7 +18,7 @@ public class GameGoldenMasterTest {
 		PrintStream printStream = new PrintStream(os);
 		System.setOut(printStream);
 
-		gameRunnerTest = new GameRunnerTest(seed);
+        GameRunnerTest gameRunnerTest = new GameRunnerTest(SEED);
 		gameRunnerTest.run();
 
 		String output = os.toString("UTF8");
@@ -34,11 +30,11 @@ public class GameGoldenMasterTest {
         private final int seed;
         private boolean notAWinner;
 
-        public GameRunnerTest(int seed) {
+        GameRunnerTest(int seed) {
             this.seed = seed;
         }
 
-        public void run() {
+        void run() {
             Game aGame = new Game();
 
             aGame.add("Chet");
