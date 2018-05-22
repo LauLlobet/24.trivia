@@ -21,4 +21,15 @@ public class Players {
         return playersList.get(currentPlayer);
     }
 
+    public Player nextPlayerAfter(Player currentPlayer) {
+        if(isLastPlayer(currentPlayer)){
+            return playersList.get(0);
+        }
+        int index = playersList.indexOf(currentPlayer) + 1;
+        return playersList.get(index);
+    }
+
+    private boolean isLastPlayer(Player player) {
+        return playersList.indexOf(player) == ( playersList.size() -1 );
+    }
 }
