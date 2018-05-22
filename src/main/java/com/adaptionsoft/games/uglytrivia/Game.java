@@ -26,39 +26,46 @@ public class Game {
 
 	public void roll(int roll) {
         printRollIntroduction(roll);
-		
 		if (currentPlayer.isInPenaltyBox()){
-			if (roll % 2 != 0) {
-				isGettingOutOfPenaltyBox = true;
-				System.out.println(currentPlayer + " is getting out of the penalty box");
-                advanceInBoardAtCurrentPlayerPositions(roll);
-
-				
-				System.out.println(currentPlayer
-						+ "'s new location is " 
-						+ board[currentPlayer.getNumberOfPlayer()]);
-				System.out.println("The category is " + boardReal.currentCategory(board[currentPlayer.getNumberOfPlayer()]));
-                questionsSource.askQuestion(boardReal.currentCategory(board[currentPlayer.getNumberOfPlayer()]));
+			if (isEven(roll)) {
+                getOutOfPenalityBox();
+                advanceCurrentPlayer(roll);
+                askQuesion();
 			} else {
-				System.out.println(currentPlayer + " is not getting out of the penalty box");
-				isGettingOutOfPenaltyBox = false;
+                remainInPenalityBox();
 			}
-			
 		} else {
-
-            advanceInBoardAtCurrentPlayerPositions(roll);
-			System.out.println(currentPlayer
-					+ "'s new location is " 
-					+ board[currentPlayer.getNumberOfPlayer()]);
-			System.out.println("The category is " + boardReal.currentCategory(board[currentPlayer.getNumberOfPlayer()]));
-            questionsSource.askQuestion(boardReal.currentCategory(board[currentPlayer.getNumberOfPlayer()]));
+            advanceCurrentPlayer(roll);
+            askQuesion();
         }
 		
 	}
 
-    private void advanceInBoardAtCurrentPlayerPositions(int roll) {
+    private boolean isEven(int roll) {
+        return roll % 2 != 0;
+    }
+
+    private void getOutOfPenalityBox() {
+        isGettingOutOfPenaltyBox = true;
+        System.out.println(currentPlayer + " is getting out of the penalty box");
+    }
+
+    private void remainInPenalityBox() {
+        System.out.println(currentPlayer + " is not getting out of the penalty box");
+        isGettingOutOfPenaltyBox = false;
+    }
+
+    private void askQuesion() {
+        System.out.println("The category is " + boardReal.currentCategory(board[currentPlayer.getNumberOfPlayer()]));
+        questionsSource.askQuestion(boardReal.currentCategory(board[currentPlayer.getNumberOfPlayer()]));
+    }
+
+    private void advanceCurrentPlayer(int roll) {
         board[currentPlayer.getNumberOfPlayer()] = board[currentPlayer.getNumberOfPlayer()] + roll;
         if (board[currentPlayer.getNumberOfPlayer()] > 11) board[currentPlayer.getNumberOfPlayer()] = board[currentPlayer.getNumberOfPlayer()] - 12;
+        System.out.println(currentPlayer
+                + "'s new location is "
+                + board[currentPlayer.getNumberOfPlayer()]);
     }
 
     private void printRollIntroduction(int roll) {
