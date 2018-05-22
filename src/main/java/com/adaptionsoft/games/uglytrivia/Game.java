@@ -32,7 +32,7 @@ public class Game {
 	public boolean add(String playerName) {
 		
 		
-	    players.add(playerName);
+	    players.add(new Player(playerName,0));
 
 	    board[players.getNumberOfPlayers()] = 0;
 	    score[players.getNumberOfPlayers()] = 0;
@@ -107,6 +107,7 @@ public class Game {
 			if (isGettingOutOfPenaltyBox) {
 				System.out.println("Answer was correct!!!!");
 				score[currentPlayerPosition]++;
+				players.getAtPosition(currentPlayerPosition).increaseScoreByOne();
 				System.out.println(players.getAtPosition(currentPlayerPosition)
 						+ " now has "
 						+ score[currentPlayerPosition]
@@ -129,6 +130,7 @@ public class Game {
 		
 			System.out.println("Answer was corrent!!!!");
 			score[currentPlayerPosition]++;
+            players.getAtPosition(currentPlayerPosition).increaseScoreByOne();
 			System.out.println(players.getAtPosition(currentPlayerPosition)
 					+ " now has "
 					+ score[currentPlayerPosition]

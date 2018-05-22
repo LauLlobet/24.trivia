@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class Players {
 
-    private ArrayList<String> playersList = new ArrayList<String>();
+    private ArrayList<Player> playersList = new ArrayList<Player>();
 
-    public boolean add(String o) {
+    public boolean add(Player o) {
         boolean ans = playersList.add(o);
         System.out.println(o.toString() + " was added");
         System.out.println("They are player number " + playersList.size());
@@ -17,7 +17,7 @@ public class Players {
         return playersList.size();
     }
 
-    public String getAtPosition(int currentPlayer) {
+    public Player getAtPosition(int currentPlayer) {
         return playersList.get(currentPlayer);
     }
 }
