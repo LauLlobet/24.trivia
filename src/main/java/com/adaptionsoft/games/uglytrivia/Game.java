@@ -1,12 +1,11 @@
 package com.adaptionsoft.games.uglytrivia;
 
-import java.util.LinkedList;
-
 public class Game {
     Players players = new Players();
     int[] board = new int[6];
     int[] score = new int[6];
 
+    Board boardReal = new Board();
     QuestionsSource questionsSource = new QuestionsSource();
     
     Player currentPlayer;
@@ -16,10 +15,6 @@ public class Game {
     public  Game(){
 
     }
-
-	public String createQuestion(String field, int index){
-		return field + index;
-	}
 
 	public boolean add(String playerName) {
 	    players.add(new Player(playerName,0, players.getNumberOfPlayers()));
@@ -45,8 +40,8 @@ public class Game {
 				System.out.println(currentPlayer
 						+ "'s new location is " 
 						+ board[currentPlayer.getNumberOfPlayer()]);
-				System.out.println("The category is " + currentCategory());
-                questionsSource.askQuestion(currentCategory());
+				System.out.println("The category is " + boardReal.currentCategory(board[currentPlayer.getNumberOfPlayer()]));
+                questionsSource.askQuestion(boardReal.currentCategory(board[currentPlayer.getNumberOfPlayer()]));
 			} else {
 				System.out.println(currentPlayer + " is not getting out of the penalty box");
 				isGettingOutOfPenaltyBox = false;
@@ -60,26 +55,13 @@ public class Game {
 			System.out.println(currentPlayer
 					+ "'s new location is " 
 					+ board[currentPlayer.getNumberOfPlayer()]);
-			System.out.println("The category is " + currentCategory());
-            questionsSource.askQuestion(currentCategory());
+			System.out.println("The category is " + boardReal.currentCategory(board[currentPlayer.getNumberOfPlayer()]));
+            questionsSource.askQuestion(boardReal.currentCategory(board[currentPlayer.getNumberOfPlayer()]));
         }
 		
 	}
-	
-	private String currentCategory() {
-		if (board[currentPlayer.getNumberOfPlayer()] == 0) return "Pop";
-		if (board[currentPlayer.getNumberOfPlayer()] == 4) return "Pop";
-		if (board[currentPlayer.getNumberOfPlayer()] == 8) return "Pop";
-		if (board[currentPlayer.getNumberOfPlayer()] == 1) return "Science";
-		if (board[currentPlayer.getNumberOfPlayer()] == 5) return "Science";
-		if (board[currentPlayer.getNumberOfPlayer()] == 9) return "Science";
-		if (board[currentPlayer.getNumberOfPlayer()] == 2) return "Sports";
-		if (board[currentPlayer.getNumberOfPlayer()] == 6) return "Sports";
-		if (board[currentPlayer.getNumberOfPlayer()] == 10) return "Sports";
-		return "Rock";
-	}
 
-	public boolean wasCorrectlyAnswered() {
+    public boolean wasCorrectlyAnswered() {
 		if (currentPlayer.isInPenaltyBox()){
 			if (isGettingOutOfPenaltyBox) {
 				System.out.println("Answer was correct!!!!");
