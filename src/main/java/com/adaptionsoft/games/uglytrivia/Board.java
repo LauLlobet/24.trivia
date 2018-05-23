@@ -34,4 +34,8 @@ public class Board {
         return currentCategory(positionFor.get(player));
 
     }
+
+    public int positionOf(Player player) {
+        return positionFor.get(player);
+    }
 }
