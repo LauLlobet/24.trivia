@@ -61,4 +61,7 @@ public class Player {
     public void setGettingOutOfPenaltyBox() {
         notGettingOutOfPenaltyBox = false;
     }
+
+    public void getInOrOutOfPenaltyBoxAcordingTo(Roll roll) {
+    }
 }

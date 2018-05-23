@@ -24,19 +24,17 @@ public class Game {
 
         printRollIntroduction(roll);
 
-        if (!currentPlayer.isInPenaltyBox()) {
-            advanceCurrentPlayer(roll);
-            askQuesion();
+        if (currentPlayer.isInPenaltyBox() && !roll.isEven()) {
+            remainInPenalityBox();
             return;
         }
         if (currentPlayer.isInPenaltyBox() && roll.isEven()) {
             getOutOfPenalityBox();
-            advanceCurrentPlayer(roll);
-            askQuesion();
+
         }
-        if (currentPlayer.isInPenaltyBox() && !roll.isEven()) {
-            remainInPenalityBox();
-        }
+        currentPlayer.getInOrOutOfPenaltyBoxAcordingTo(roll);
+        advanceCurrentPlayer(roll);
+        askQuesion();
     }
 
     private void getOutOfPenalityBox() {
