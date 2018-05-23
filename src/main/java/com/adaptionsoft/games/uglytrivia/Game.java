@@ -8,22 +8,20 @@ public class Game {
 
     Player currentPlayer;
 
-    boolean isGettingOutOfPenaltyBox;
-
     public Game() {
 
     }
 
-    public boolean add(String playerName) {
+    public void add(String playerName) {
         Player player = new Player(playerName, 0, players.getNumberOfPlayers());
         players.add(player);
         boardReal.putPlayerAtZeroPosition(player);
         currentPlayer = players.getAtPosition(0);
-        return true;
     }
 
     public void roll(int rollPrimitive) {
         Roll roll = new Roll(rollPrimitive);
+
         printRollIntroduction(roll);
 
         if (!currentPlayer.isInPenaltyBox()) {
@@ -42,13 +40,13 @@ public class Game {
     }
 
     private void getOutOfPenalityBox() {
-        isGettingOutOfPenaltyBox = true;
+        currentPlayer.setGettingOutOfPenaltyBox();
         System.out.println(currentPlayer + " is getting out of the penalty box");
     }
 
     private void remainInPenalityBox() {
         System.out.println(currentPlayer + " is not getting out of the penalty box");
-        isGettingOutOfPenaltyBox = false;
+        currentPlayer.setNotGettingOutOfPenaltyBox();
     }
 
     private void askQuesion() {
@@ -71,7 +69,7 @@ public class Game {
     }
 
     public boolean wasCorrectlyAnswered() {
-        if (currentPlayer.isInPenaltyBox() && !isGettingOutOfPenaltyBox) {
+        if (currentPlayer.isInPenaltyBox() && currentPlayer.isNotGettingOutOfPenaltyBox() ) {
             nextPlayer();
             return true;
         }

@@ -4,6 +4,7 @@ public class Player {
 
     private final String playerName;
     private int score;
+    private boolean notGettingOutOfPenaltyBox;
 
     public boolean isInPenaltyBox() {
         return inPenaltyBox;
@@ -49,4 +50,15 @@ public class Player {
         System.out.println(this + " is the current player");
     }
 
+    public boolean isNotGettingOutOfPenaltyBox() {
+        return notGettingOutOfPenaltyBox;
+    }
+
+    public void setNotGettingOutOfPenaltyBox() {
+        notGettingOutOfPenaltyBox = true;
+    }
+
+    public void setGettingOutOfPenaltyBox() {
+        notGettingOutOfPenaltyBox = false;
+    }
 }
