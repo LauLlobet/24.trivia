@@ -3,6 +3,7 @@ package com.adaptionsoft.games.uglytrivia;
 public class Game {
     Players players = new Players();
     int[] board = new int[6];
+    int[] score = new int[6];
 
     Board boardReal = new Board();
     QuestionsSource questionsSource = new QuestionsSource();
@@ -16,8 +17,12 @@ public class Game {
     }
 
     public boolean add(String playerName) {
-        players.add(new Player(playerName, 0, players.getNumberOfPlayers()));
+        Player player = new Player(playerName, 0, players.getNumberOfPlayers());
+        players.add(player);
+        boardReal.putPlayerAtZeroPosition(player);
+
         board[players.getNumberOfPlayers()] = 0;
+        score[players.getNumberOfPlayers()] = 0;
         currentPlayer = players.getAtPosition(0);
         return true;
     }
@@ -52,7 +57,8 @@ public class Game {
     }
 
     private void askQuesion() {
-        System.out.println("The category is " + boardReal.currentCategory(board[currentPlayer.getNumberOfPlayer()]));
+        //System.out.println("The category is " + boardReal.currentCategory(board[currentPlayer.getNumberOfPlayer()]));
+        System.out.println("The category is " + boardReal.categoryForCellWhereLies(currentPlayer));
         questionsSource.askQuestion(boardReal.currentCategory(board[currentPlayer.getNumberOfPlayer()]));
     }
 
@@ -60,6 +66,8 @@ public class Game {
         board[currentPlayer.getNumberOfPlayer()] = board[currentPlayer.getNumberOfPlayer()] + roll.getRollPrimitive();
         if (board[currentPlayer.getNumberOfPlayer()] > 11)
             board[currentPlayer.getNumberOfPlayer()] = board[currentPlayer.getNumberOfPlayer()] - 12;
+
+        boardReal.advancePlayerPositions(roll,currentPlayer);
         System.out.println(currentPlayer
                 + "'s new location is "
                 + board[currentPlayer.getNumberOfPlayer()]);
@@ -85,6 +93,8 @@ public class Game {
         nextPlayer();
         return winner;
     }
+
+
 
     private void nextPlayer() {
         currentPlayer = players.nextPlayerAfter(currentPlayer);
