@@ -50,40 +50,29 @@ public class Player {
         System.out.println(this + " is the current player");
     }
 
-    public boolean isNotGettingOutOfPenailtyBox() {
+    public boolean hasAPenalisedTurn() {
         return notGettingOutOfPenaltyBox;
     }
 
-    public void setNotGettingOutOfPenaltyBox() {
-        notGettingOutOfPenaltyBox = true;
-    }
 
-    public void setGettingOutOfPenaltyBox() {
+    public void setNonPenalisedTurn() {
+        System.out.println(this + " is getting out of the penalty box");
         notGettingOutOfPenaltyBox = false;
     }
 
-    public void getInOrOutOfPenaltyBoxAcordingTo(Roll roll) {
-    }
-
-    public void getOutOfPenalityBox() {
-        this.setGettingOutOfPenaltyBox();
-        System.out.println(this + " is getting out of the penalty box");
-    }
-
-    void remainInPenalityBox() {
+    void setPenalisedTurn() {
         System.out.println(this + " is not getting out of the penalty box");
-        this.setNotGettingOutOfPenaltyBox();
+        notGettingOutOfPenaltyBox = true;
     }
 
 
-    public void setToGettingOutOfPenaltyBoxDependingOn(Roll roll) {
+    public void penaliseTurnIfItsOnPenaltyBoxDependingOn(Roll roll) {
         if (isInPenaltyBox() && !roll.isEven()) {
-            remainInPenalityBox();
+            setPenalisedTurn();
         }
 
         if (isInPenaltyBox() && roll.isEven()) {
-            getOutOfPenalityBox();
-
+            setNonPenalisedTurn();
         }
     }
 }

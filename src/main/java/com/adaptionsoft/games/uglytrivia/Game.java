@@ -23,9 +23,9 @@ public class Game {
         Roll roll = new Roll(rollPrimitive);
         printRollIntroduction(roll);
 
-        currentPlayer.setToGettingOutOfPenaltyBoxDependingOn(roll);
+        currentPlayer.penaliseTurnIfItsOnPenaltyBoxDependingOn(roll);
 
-        if(currentPlayer.isNotGettingOutOfPenailtyBox()){
+        if(currentPlayer.hasAPenalisedTurn()){
             return;
         }
         advanceCurrentPlayer(roll);
@@ -55,7 +55,7 @@ public class Game {
     public boolean wasCorrectlyAnswered() {
 
 
-        if (currentPlayer.isNotGettingOutOfPenailtyBox()) {
+        if (currentPlayer.hasAPenalisedTurn()) {
             nextPlayer();
             return true;
         }
