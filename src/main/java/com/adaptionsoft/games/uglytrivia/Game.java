@@ -11,10 +11,10 @@ public class Game {
         currentPlayer = players.getPlayer(0);
     }
 
-    public void roll(Roll roll, boolean secondRoll) {
+    public void playTurn(Roll roll, boolean secondRoll) {
         printRollAndCurrentPlayer(roll);
         applyFirstDiceRules(roll);
-        secondRoll(secondRoll);
+        secondRoll(roll.isSecondroll());
     }
 
     private void applyFirstDiceRules(Roll roll) {

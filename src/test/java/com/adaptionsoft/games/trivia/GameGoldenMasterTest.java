@@ -54,9 +54,12 @@ public class GameGoldenMasterTest {
 
             do {
 
-                Roll firstRoll = new Roll(rand.nextInt(5) + 1);
+                int intFirstRoll = rand.nextInt(5) + 1;
+
                 boolean secondroll = rand.nextInt(9) == 7;
-                aGame.roll(firstRoll,secondroll);
+
+                Roll firstRoll = new Roll(intFirstRoll,secondroll);
+                aGame.playTurn(firstRoll,secondroll);
 
                // aGame.secondRoll(secondroll);
 

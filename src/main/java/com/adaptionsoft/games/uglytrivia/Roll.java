@@ -7,8 +7,15 @@ public class Roll {
 
     private final int rollPrimitive;
 
-    public Roll(int rollPrimitive) {
+    public boolean isSecondroll() {
+        return secondroll;
+    }
+
+    private final boolean secondroll;
+
+    public Roll(int rollPrimitive, boolean secondroll) {
         this.rollPrimitive = rollPrimitive;
+        this.secondroll = secondroll;
     }
 
     public boolean isEven(){
