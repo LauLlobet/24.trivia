@@ -42,4 +42,17 @@ public class PenaltyState {
         return !inPenaltyBox;
     }
 
+    public void printStateFor(String name){
+        if(isNotInPenaltyBox()){
+            return;
+        }
+        if(notGettingOutOfPenaltyBox == false){
+            System.out.println(name + " is getting out of the penalty box");
+
+        }else {
+            System.out.println(name + " is not getting out of the penalty box");
+        }
+
+    }
+
 }
