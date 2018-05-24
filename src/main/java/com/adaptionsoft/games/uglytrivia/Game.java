@@ -19,18 +19,18 @@ public class Game {
 
     private void applyFirstDiceRules(Roll roll) {
         currentPlayer.penaliseTurnIfItsOnPenaltyBoxAcordingTo(roll);
-        if(currentPlayer.hasAPenalisedTurn()){
-            return;
+        if(!currentPlayer.hasAPenalisedTurn()){
+            board.advancePlayerAndAskQuestion(roll, currentPlayer); // TODO: pass primitive to make more explicit no llogic in roll is used
         }
-        board.advancePlayerAndAskQuestion(roll, currentPlayer); // TODO: pass primitive to make more explicit no llogic in roll is used
-    }
-
-    public void secondRoll(Roll roll) {
         if (roll.isPenalityRoll()) {
             currentPlayer.setInPenaltyBox();
             return;
         }
         currentPlayer.increaseScoreByOne();
+    }
+
+    private void secondRoll(Roll roll) {
+
     }
 
     private void printRollAndCurrentPlayer(Roll roll) {
