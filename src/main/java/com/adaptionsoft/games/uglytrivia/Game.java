@@ -4,7 +4,6 @@ public class Game {
     Players players = new Players();
 
     Board boardReal = new Board();
-    QuestionsSource questionsSource = new QuestionsSource();
     Player currentPlayer;
 
     public Game() {
@@ -30,14 +29,8 @@ public class Game {
 
         boardReal.advancePlayerPositions(roll, currentPlayer);
 
-        askQuesion();
     }
 
-
-    private void askQuesion() {
-        System.out.println("The category is " + boardReal.categoryForCellWhereLies(currentPlayer));
-        questionsSource.askQuestion(boardReal.categoryForCellWhereLies(currentPlayer));
-    }
 
     private void printRollIntroduction(Roll roll) {
         currentPlayer.announceOwnTurn();
@@ -46,8 +39,6 @@ public class Game {
     }
 
     public boolean wasCorrectlyAnswered() {
-
-
         if (currentPlayer.hasAPenalisedTurn()) {
             nextPlayer();
             return true;
