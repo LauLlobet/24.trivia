@@ -23,14 +23,18 @@ public class GameRunner {
 		do {
 			
 			aGame.roll(new Roll(rand.nextInt(5) + 1));
-			
+
+			aGame.roll(new Roll(rand.nextInt(5) + 1));
+
 			if (rand.nextInt(9) == 7) {
-				notAWinner = aGame.setCurrentPlayerInPenaltyBox();
+				aGame.setCurrentPlayerInPenaltyBox();
 			} else {
 				aGame.playTurn();
-				notAWinner = aGame.hasCurentPlayerNotWon();
 			}
-			
+
+			notAWinner = aGame.hasCurentPlayerNotWon();
+
+			aGame.nextPlayer();
 			
 			
 		} while (notAWinner);

@@ -27,9 +27,8 @@ public class Game {
         }
     }
 
-    public boolean setCurrentPlayerInPenaltyBox() {
+    public void setCurrentPlayerInPenaltyBox() {
         currentPlayer.setInPenaltyBox();
-        return true;
     }
 
     private void announceRollAndTurn(Roll roll) {

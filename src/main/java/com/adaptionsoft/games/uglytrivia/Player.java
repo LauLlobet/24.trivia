@@ -23,26 +23,6 @@ public class Player {
         System.out.println(getStatusString());
     }
 
-    public int getScore() {
-        return score;
-    }
-
-    public String getStatusString() {
-        return name + " now has "
-                + score
-                + " Gold Coins.";
-    }
-
-    public void announceOwnTurn() {
-        System.out.println(name + " is the current player");
-    }
-
-
-    public void setInPenaltyBox() {
-        System.out.println("Question was incorrectly answered");
-        System.out.println(name + " was sent to the penalty box");
-        penaltyState.setInPenaltyBox();
-    }
 
     public boolean hasAPenalisedTurn() {
         return penaltyState.hasAPenalisedTurn();
@@ -54,6 +34,24 @@ public class Player {
     }
 
     public boolean hasNotWon() {
-        return !( getScore() == 6);
+        return !( score == 6) || inPenaltyBox;
     }
+
+
+    public void setInPenaltyBox() {
+        System.out.println("Question was incorrectly answered");
+        System.out.println(name + " was sent to the penalty box");
+        penaltyState.setInPenaltyBox();
+    }
+
+
+    private String getStatusString() {
+        return name + " now has " + score + " Gold Coins.";
+    }
+
+    public void announceOwnTurn() {
+        System.out.println(name + " is the current player");
+    }
+
+
 }
