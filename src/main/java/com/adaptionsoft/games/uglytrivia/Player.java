@@ -8,7 +8,7 @@ public class Player {
     boolean inPenaltyBox = false;
     private PenaltyState penaltyState = new PenaltyState();
 
-    Player(String playerName) {
+    public Player(String playerName) {
         this.name = playerName;
         this.score = 0;
     }
