@@ -4,8 +4,8 @@ public class PenaltyState {
     private boolean notGettingOutOfPenaltyBox;
     boolean inPenaltyBox = false;
 
-    public void setInPenaltyBox(boolean inPenaltyBox) {
-        this.inPenaltyBox = inPenaltyBox;
+    public void setInPenaltyBox() {
+        this.inPenaltyBox = true;
     }
 
     public boolean hasAPenalisedTurn() {
@@ -14,12 +14,10 @@ public class PenaltyState {
 
 
     public void setNonPenalisedTurn() {
-        System.out.println(this + " is getting out of the penalty box");
         notGettingOutOfPenaltyBox = false;
     }
 
     void setPenalisedTurn() {
-        System.out.println(this + " is not getting out of the penalty box");
         notGettingOutOfPenaltyBox = true;
     }
 

@@ -8,14 +8,6 @@ public class Player {
     boolean inPenaltyBox = false;
     private PenaltyState penaltyState = new PenaltyState();
 
-
-
-    public void setInPenaltyBox() {
-        this.inPenaltyBox = true;
-    }
-
-
-
     Player(String playerName) {
         this.playerName = playerName;
         this.score = 0;
@@ -43,28 +35,37 @@ public class Player {
         System.out.println(this + " is the current player");
     }
 
+
+
+
+    public void setInPenaltyBox() {
+        this.inPenaltyBox = true;
+        penaltyState.setInPenaltyBox();
+    }
+
     public boolean hasAPenalisedTurn() {
-        return notGettingOutOfPenaltyBox;
+        return penaltyState.hasAPenalisedTurn();
     }
-
-
-    public void setNonPenalisedTurn() {
-        System.out.println(this + " is getting out of the penalty box");
-        notGettingOutOfPenaltyBox = false;
-    }
-
-    void setPenalisedTurn() {
-        System.out.println(this + " is not getting out of the penalty box");
-        notGettingOutOfPenaltyBox = true;
-    }
-
 
     public void penaliseTurnIfItsOnPenaltyBoxDependingOn(Roll roll) {
         if (isNotInPenaltyBox()) {
             return;
         }
         penaliseTurnDependingOn(roll);
+        penaltyState.penaliseTurnIfItsOnPenaltyBoxDependingOn(roll);
 
+    }
+
+    public void setNonPenalisedTurn() {
+        System.out.println(this + " is getting out of the penalty box");
+        notGettingOutOfPenaltyBox = false;
+    }
+
+
+
+    private void setPenalisedTurn() {
+        System.out.println(this + " is not getting out of the penalty box");
+        notGettingOutOfPenaltyBox = true;
     }
 
     private void penaliseTurnDependingOn(Roll roll) {
@@ -75,7 +76,11 @@ public class Player {
         setNonPenalisedTurn();
     }
 
-    public boolean isNotInPenaltyBox() {
+    private boolean isNotInPenaltyBox() {
         return !inPenaltyBox;
     }
+
+
+
+
 }
