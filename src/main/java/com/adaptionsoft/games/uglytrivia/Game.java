@@ -7,18 +7,23 @@ public class Game {
 
     public void add(Player player) {
         players.add(player);
-        board.putPlayerAtZeroPosition(player);
-        currentPlayer = players.getAtPosition(0);
+        board.putAtZero(player);
+        currentPlayer = players.getPlayer(0);
     }
 
-    public void roll(Roll roll) {
-        announceRollAndTurn(roll);
-        currentPlayer.penaliseTurnIfItsOnPenaltyBoxDependingOn(roll);
+    public void roll(Roll roll, boolean secondRoll) {
+        announceRollAndCurrentPlayer(roll);
+        currentPlayer.penaliseTurnIfItsOnPenaltyBoxAcordingTo(roll);
         if(currentPlayer.hasAPenalisedTurn()){
             return;
         }
-        board.advancePlayerPositionsAndAskQuestion(roll, currentPlayer);
+        board.advancePlayerAndAskQuestion(roll, currentPlayer);
 
+   /*     if (secondRoll) {
+            setCurrentPlayerInPenaltyBox();
+        } else {
+            playTurn();
+        }*/
     }
 
     public void playTurn() {
@@ -31,7 +36,7 @@ public class Game {
         currentPlayer.setInPenaltyBox();
     }
 
-    private void announceRollAndTurn(Roll roll) {
+    private void announceRollAndCurrentPlayer(Roll roll) {
         currentPlayer.announceOwnTurn();
         roll.announceIt();
 

@@ -54,9 +54,11 @@ public class GameGoldenMasterTest {
 
             do {
 
-                aGame.roll(new Roll(rand.nextInt(5) + 1));
+                Roll firstRoll = new Roll(rand.nextInt(5) + 1);
+                boolean secondroll = rand.nextInt(9) == 7;
+                aGame.roll(firstRoll,false);
 
-                if (rand.nextInt(9) == 7) {
+                if (secondroll) {
                     aGame.setCurrentPlayerInPenaltyBox();
                 } else {
                     aGame.playTurn();

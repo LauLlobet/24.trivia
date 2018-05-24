@@ -4,7 +4,6 @@ public class Player {
 
     private final String name;
     private int score;
-    private boolean notGettingOutOfPenaltyBox;
     boolean inPenaltyBox = false;
     private PenaltyState penaltyState = new PenaltyState();
 
@@ -28,7 +27,7 @@ public class Player {
         return penaltyState.hasAPenalisedTurn();
     }
 
-    public void penaliseTurnIfItsOnPenaltyBoxDependingOn(Roll roll) {
+    public void penaliseTurnIfItsOnPenaltyBoxAcordingTo(Roll roll) {
         penaltyState.penaliseTurnIfItsOnPenaltyBoxDependingOn(roll);
         penaltyState.printStateFor(name);
     }

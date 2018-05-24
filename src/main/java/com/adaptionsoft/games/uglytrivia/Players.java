@@ -17,7 +17,7 @@ public class Players {
         return playersList.size();
     }
 
-    public Player getAtPosition(int currentPlayer) {
+    public Player getPlayer(int currentPlayer) {
         return playersList.get(currentPlayer);
     }
 

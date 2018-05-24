@@ -13,7 +13,6 @@ public class GameRunner {
 
 	public static void main(String[] args) {
 		Game aGame = new Game();
-		
 		aGame.add(new Player("Chet"));
 		aGame.add(new Player("Pat"));
 		aGame.add(new Player("Sue"));
@@ -21,23 +20,9 @@ public class GameRunner {
 		Random rand = new Random();
 	
 		do {
-			
-			aGame.roll(new Roll(rand.nextInt(5) + 1));
-
-			aGame.roll(new Roll(rand.nextInt(5) + 1));
-
-			if (rand.nextInt(9) == 7) {
-				aGame.setCurrentPlayerInPenaltyBox();
-			} else {
-				aGame.playTurn();
-			}
-
+			aGame.roll(new Roll(rand.nextInt( 5) + 1), false);
 			notAWinner = aGame.hasCurentPlayerNotWon();
-
 			aGame.nextPlayer();
-			
-			
 		} while (notAWinner);
-		
 	}
 }
