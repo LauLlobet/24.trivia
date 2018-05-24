@@ -13,7 +13,7 @@ import java.util.Random;
 public class GameGoldenMasterTest {
 
     private static final int SEED = 4001;
-    private static final int GAMES_TO_PLAY = 2000;
+    private static final int GAMES_TO_PLAY = 1000;
 
     @Test
 	public void goldenMasterTest() throws Exception {
@@ -56,13 +56,9 @@ public class GameGoldenMasterTest {
 
                 Roll firstRoll = new Roll(rand.nextInt(5) + 1);
                 boolean secondroll = rand.nextInt(9) == 7;
-                aGame.roll(firstRoll,false);
+                aGame.roll(firstRoll,secondroll);
 
-                if (secondroll) {
-                    aGame.setCurrentPlayerInPenaltyBox();
-                } else {
-                    aGame.playTurn();
-                }
+               // aGame.secondRoll(secondroll);
 
                 notAWinner = aGame.hasCurentPlayerNotWon();
 

@@ -13,21 +13,28 @@ public class Game {
 
     public void roll(Roll roll, boolean secondRoll) {
         announceRollAndCurrentPlayer(roll);
+        firstDiceRules(roll);
+        secondRoll(secondRoll);
+    }
+
+    private void firstDiceRules(Roll roll) {
         currentPlayer.penaliseTurnIfItsOnPenaltyBoxAcordingTo(roll);
         if(currentPlayer.hasAPenalisedTurn()){
             return;
         }
         board.advancePlayerAndAskQuestion(roll, currentPlayer);
+    }
 
-   /*     if (secondRoll) {
+    public void secondRoll(boolean secondroll) {
+        if (secondroll) {
             setCurrentPlayerInPenaltyBox();
         } else {
             playTurn();
-        }*/
+        }
     }
 
     public void playTurn() {
-        if (! currentPlayer.hasAPenalisedTurn()) {
+        if (!currentPlayer.hasAPenalisedTurn()) {
             currentPlayer.increaseScoreByOne();
         }
     }
@@ -49,4 +56,6 @@ public class Game {
     public boolean hasCurentPlayerNotWon() {
         return currentPlayer.hasNotWon();
     }
+
+
 }
