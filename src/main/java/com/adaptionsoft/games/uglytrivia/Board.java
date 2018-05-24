@@ -11,6 +11,9 @@ public class Board {
             newPosition = newPosition - 12;
         }
         positionFor.put(player, newPosition);
+        System.out.println(player
+                + "'s new location is "
+                + positionOf(player));
     }
 
     public void putPlayerAtZeroPosition(Player player){

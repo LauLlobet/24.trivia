@@ -27,7 +27,9 @@ public class Game {
         if(currentPlayer.hasAPenalisedTurn()){
             return;
         }
-        advanceCurrentPlayer(roll);
+
+        boardReal.advancePlayerPositions(roll, currentPlayer);
+
         askQuesion();
     }
 
@@ -35,14 +37,6 @@ public class Game {
     private void askQuesion() {
         System.out.println("The category is " + boardReal.categoryForCellWhereLies(currentPlayer));
         questionsSource.askQuestion(boardReal.categoryForCellWhereLies(currentPlayer));
-    }
-
-    private void advanceCurrentPlayer(Roll roll) {
-
-        boardReal.advancePlayerPositions(roll, currentPlayer);
-        System.out.println(currentPlayer
-                + "'s new location is "
-                + boardReal.positionOf(currentPlayer));
     }
 
     private void printRollIntroduction(Roll roll) {
