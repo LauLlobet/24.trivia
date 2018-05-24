@@ -13,7 +13,7 @@ public class Game {
     }
 
     public void add(String playerName) {
-        Player player = new Player(playerName, 0, players.getNumberOfPlayers());
+        Player player = new Player(playerName);
         players.add(player);
         boardReal.putPlayerAtZeroPosition(player);
         currentPlayer = players.getAtPosition(0);

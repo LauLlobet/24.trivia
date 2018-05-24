@@ -6,26 +6,15 @@ public class Player {
     private int score;
     private boolean notGettingOutOfPenaltyBox;
 
-    public boolean isInPenaltyBox() {
-        return inPenaltyBox;
-    }
-
     public void setInPenaltyBox(boolean inPenaltyBox) {
         this.inPenaltyBox = inPenaltyBox;
     }
 
     boolean inPenaltyBox = false;
 
-    public int getNumberOfPlayer() {
-        return numberOfPlayer;
-    }
-
-    private final int numberOfPlayer;
-
-    Player(String playerName, int score, int numberOfPlayer) {
+    Player(String playerName) {
         this.playerName = playerName;
-        this.score = score;
-        this.numberOfPlayer = numberOfPlayer;
+        this.score = 0;
     }
 
     public String toString() {
