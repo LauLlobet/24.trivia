@@ -56,10 +56,10 @@ public class GameGoldenMasterTest {
 
                 int intFirstRoll = rand.nextInt(5) + 1;
 
-                boolean secondroll = rand.nextInt(9) == 7;
+                int secondroll = rand.nextInt(9);
 
-                Roll firstRoll = new Roll(intFirstRoll,secondroll);
-                aGame.playTurn(firstRoll,secondroll);
+                Roll roll = new Roll(intFirstRoll,secondroll);
+                aGame.playTurn(roll);
 
                // aGame.secondRoll(secondroll);
 

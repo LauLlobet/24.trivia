@@ -8,12 +8,13 @@ public class Roll {
     private final int rollPrimitive;
 
     public boolean isSecondroll() {
-        return secondroll;
+        return secondroll == 7;
     }
 
-    private final boolean secondroll;
+    private final int secondroll;
 
-    public Roll(int rollPrimitive, boolean secondroll) {
+    public Roll(int rollPrimitive, int secondroll) {
+
         this.rollPrimitive = rollPrimitive;
         this.secondroll = secondroll;
     }
