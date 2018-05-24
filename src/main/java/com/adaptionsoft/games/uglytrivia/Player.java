@@ -50,7 +50,7 @@ public class Player {
         System.out.println(this + " is the current player");
     }
 
-    public boolean isNotGettingOutOfPenaltyBox() {
+    public boolean isNotGettingOutOfPenailtyBox() {
         return notGettingOutOfPenaltyBox;
     }
 
@@ -64,4 +64,16 @@ public class Player {
 
     public void getInOrOutOfPenaltyBoxAcordingTo(Roll roll) {
     }
+
+    public void getOutOfPenalityBox() {
+        this.setGettingOutOfPenaltyBox();
+        System.out.println(this + " is getting out of the penalty box");
+    }
+
+    void remainInPenalityBox() {
+        System.out.println(this + " is not getting out of the penalty box");
+        this.setNotGettingOutOfPenaltyBox();
+    }
+
+
 }

@@ -24,28 +24,23 @@ public class Game {
 
         printRollIntroduction(roll);
 
+
         if (currentPlayer.isInPenaltyBox() && !roll.isEven()) {
-            remainInPenalityBox();
-            return;
+            currentPlayer.remainInPenalityBox();
         }
+
         if (currentPlayer.isInPenaltyBox() && roll.isEven()) {
-            getOutOfPenalityBox();
+            currentPlayer.getOutOfPenalityBox();
 
         }
-        currentPlayer.getInOrOutOfPenaltyBoxAcordingTo(roll);
+
+        if(currentPlayer.isNotGettingOutOfPenailtyBox()){
+            return;
+        }
         advanceCurrentPlayer(roll);
         askQuesion();
     }
 
-    private void getOutOfPenalityBox() {
-        currentPlayer.setGettingOutOfPenaltyBox();
-        System.out.println(currentPlayer + " is getting out of the penalty box");
-    }
-
-    private void remainInPenalityBox() {
-        System.out.println(currentPlayer + " is not getting out of the penalty box");
-        currentPlayer.setNotGettingOutOfPenaltyBox();
-    }
 
     private void askQuesion() {
         System.out.println("The category is " + boardReal.categoryForCellWhereLies(currentPlayer));
@@ -54,7 +49,7 @@ public class Game {
 
     private void advanceCurrentPlayer(Roll roll) {
 
-        boardReal.advancePlayerPositions(roll,currentPlayer);
+        boardReal.advancePlayerPositions(roll, currentPlayer);
         System.out.println(currentPlayer
                 + "'s new location is "
                 + boardReal.positionOf(currentPlayer));
@@ -67,7 +62,9 @@ public class Game {
     }
 
     public boolean wasCorrectlyAnswered() {
-        if (currentPlayer.isInPenaltyBox() && currentPlayer.isNotGettingOutOfPenaltyBox() ) {
+
+
+        if (currentPlayer.isNotGettingOutOfPenailtyBox()) {
             nextPlayer();
             return true;
         }
@@ -80,7 +77,6 @@ public class Game {
         nextPlayer();
         return winner;
     }
-
 
 
     private void nextPlayer() {
