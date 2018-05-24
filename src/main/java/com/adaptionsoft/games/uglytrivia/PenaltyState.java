@@ -1,34 +1,27 @@
 package com.adaptionsoft.games.uglytrivia;
 
 public class PenaltyState {
-    private boolean notGettingOutOfPenaltyBox;
-    boolean inPenaltyBox = false;
+    private boolean penalizedTurn;
+    private boolean inPenaltyBox = false;
 
-    public void setInPenaltyBox() {
-        this.inPenaltyBox = true;
-    }
-
-    public boolean hasAPenalisedTurn() {
-        return notGettingOutOfPenaltyBox;
-    }
-
-
-    public void setNonPenalisedTurn() {
-        notGettingOutOfPenaltyBox = false;
-    }
-
-    void setPenalisedTurn() {
-        notGettingOutOfPenaltyBox = true;
-    }
-
-
-    public void penaliseTurnIfItsOnPenaltyBoxDependingOn(Roll roll) {
-        if (isNotInPenaltyBox()) {
+    public void printStateFor(String name){
+        if(isNotInPenaltyBox()){
             return;
         }
-        penaliseTurnDependingOn(roll);
-
+        if(!penalizedTurn) {
+            System.out.println(name + " is getting out of the penalty box");
+            return;
+        }
+        System.out.println(name + " is not getting out of the penalty box");
     }
+
+    public void penaliseTurnIfItsOnPenaltyBoxDependingOn(Roll roll) {
+        if (isInPenaltyBox()) {
+            penaliseTurnDependingOn(roll);
+        }
+    }
+
+    //--
 
     private void penaliseTurnDependingOn(Roll roll) {
         if (!roll.isEven()) {
@@ -38,21 +31,27 @@ public class PenaltyState {
         setNonPenalisedTurn();
     }
 
-    public boolean isNotInPenaltyBox() {
+    public boolean hasAPenalisedTurn() {
+        return penalizedTurn;
+    }
+
+    public void setInPenaltyBox() {
+        this.inPenaltyBox = true;
+    }
+
+    private boolean isNotInPenaltyBox() {
         return !inPenaltyBox;
     }
 
-    public void printStateFor(String name){
-        if(isNotInPenaltyBox()){
-            return;
-        }
-        if(notGettingOutOfPenaltyBox == false){
-            System.out.println(name + " is getting out of the penalty box");
-
-        }else {
-            System.out.println(name + " is not getting out of the penalty box");
-        }
-
+    private void setNonPenalisedTurn() {
+        penalizedTurn = false;
     }
 
+    private void setPenalisedTurn() {
+        penalizedTurn = true;
+    }
+
+    private boolean isInPenaltyBox() {
+        return inPenaltyBox;
+    }
 }

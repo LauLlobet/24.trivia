@@ -27,14 +27,10 @@ public class Game {
 
     public void secondRoll(boolean secondroll) {
         if (secondroll) {
-            setCurrentPlayerInPenaltyBox();
+            currentPlayer.setInPenaltyBox();
             return;
         }
         currentPlayer.increaseScoreByOne();
-    }
-
-    public void setCurrentPlayerInPenaltyBox() {
-        currentPlayer.setInPenaltyBox();
     }
 
     private void printRollAndCurrentPlayer(Roll roll) {
