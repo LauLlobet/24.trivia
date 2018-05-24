@@ -28,7 +28,7 @@ public class Player {
         this.numberOfPlayer = numberOfPlayer;
     }
 
-    public String toString(){
+    public String toString() {
         return playerName;
     }
 
@@ -42,8 +42,8 @@ public class Player {
 
     public String getStatusString() {
         return playerName + " now has "
-                        + score
-                        + " Gold Coins.";
+                + score
+                + " Gold Coins.";
     }
 
     public void announceOwnTurn() {
@@ -67,12 +67,22 @@ public class Player {
 
 
     public void penaliseTurnIfItsOnPenaltyBoxDependingOn(Roll roll) {
-        if (isInPenaltyBox() && !roll.isEven()) {
-            setPenalisedTurn();
+        if (isNotInPenaltyBox()) {
+            return;
         }
+        penaliseTurnDependingOn(roll);
 
-        if (isInPenaltyBox() && roll.isEven()) {
-            setNonPenalisedTurn();
+    }
+
+    private void penaliseTurnDependingOn(Roll roll) {
+        if (!roll.isEven()) {
+            setPenalisedTurn();
+            return;
         }
+        setNonPenalisedTurn();
+    }
+
+    public boolean isNotInPenaltyBox() {
+        return !inPenaltyBox;
     }
 }
