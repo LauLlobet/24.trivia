@@ -19,7 +19,7 @@ public class Game {
 
     public void roll(int rollPrimitive) {
         Roll roll = new Roll(rollPrimitive);
-        printRollIntroduction(roll);
+        announceRollAndTurn(roll);
         currentPlayer.penaliseTurnIfItsOnPenaltyBoxDependingOn(roll);
         if(currentPlayer.hasAPenalisedTurn()){
             return;
@@ -28,33 +28,12 @@ public class Game {
 
     }
 
-
-    private void printRollIntroduction(Roll roll) {
-        currentPlayer.announceOwnTurn();
-        roll.announceIt();
-
-    }
-
-    public boolean wasCorrectlyAnswered() {
+    public boolean wasIncorrectlyAnswered() {
         if (currentPlayer.hasAPenalisedTurn()) {
             return true;
         }
-
-        System.out.println("Answer was correct!!!!");
         currentPlayer.increaseScoreByOne();
-        printCurrentPlayerStatus();
-
-        boolean winner = didPlayerWin();
-        return winner;
-    }
-
-
-    public void nextPlayer() {
-        currentPlayer = players.nextPlayerAfter(currentPlayer);
-    }
-
-    private void printCurrentPlayerStatus() {
-        System.out.println(currentPlayer.getStatusString());
+        return currentPlayer.hasNotWon();
     }
 
     public boolean wrongAnswer() {
@@ -62,8 +41,17 @@ public class Game {
         return true;
     }
 
+    private void announceRollAndTurn(Roll roll) {
+        currentPlayer.announceOwnTurn();
+        roll.announceIt();
 
-    private boolean didPlayerWin() {
-        return !(currentPlayer.getScore() == 6);
     }
+
+
+
+    public void nextPlayer() {
+        currentPlayer = players.nextPlayerAfter(currentPlayer);
+    }
+
+
 }

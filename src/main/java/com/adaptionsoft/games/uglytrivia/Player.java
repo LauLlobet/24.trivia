@@ -18,7 +18,9 @@ public class Player {
     }
 
     public void increaseScoreByOne() {
+        System.out.println("Answer was correct!!!!");
         score++;
+        System.out.println(getStatusString());
     }
 
     public int getScore() {
@@ -51,4 +53,7 @@ public class Player {
         penaltyState.printStateFor(name);
     }
 
+    public boolean hasNotWon() {
+        return !( getScore() == 6);
+    }
 }
