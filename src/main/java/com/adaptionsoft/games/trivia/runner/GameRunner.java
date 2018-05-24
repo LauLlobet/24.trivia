@@ -27,7 +27,8 @@ public class GameRunner {
 			if (rand.nextInt(9) == 7) {
 				notAWinner = aGame.setCurrentPlayerInPenaltyBox();
 			} else {
-				notAWinner = aGame.playTurn();
+				aGame.playTurn();
+				notAWinner = aGame.hasCurentPlayerNotWon();
 			}
 			
 			

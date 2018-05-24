@@ -21,12 +21,10 @@ public class Game {
 
     }
 
-    public boolean playTurn() {
-        if (currentPlayer.hasAPenalisedTurn()) {
-            return true;
+    public void playTurn() {
+        if (! currentPlayer.hasAPenalisedTurn()) {
+            currentPlayer.increaseScoreByOne();
         }
-        currentPlayer.increaseScoreByOne();
-        return currentPlayer.hasNotWon();
     }
 
     public boolean setCurrentPlayerInPenaltyBox() {
@@ -40,11 +38,11 @@ public class Game {
 
     }
 
-
-
     public void nextPlayer() {
         currentPlayer = players.nextPlayerAfter(currentPlayer);
     }
 
-
+    public boolean hasCurentPlayerNotWon() {
+        return currentPlayer.hasNotWon();
+    }
 }
