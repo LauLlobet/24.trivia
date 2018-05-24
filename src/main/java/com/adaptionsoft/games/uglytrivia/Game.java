@@ -20,13 +20,10 @@ public class Game {
     public void roll(int rollPrimitive) {
         Roll roll = new Roll(rollPrimitive);
         printRollIntroduction(roll);
-
         currentPlayer.penaliseTurnIfItsOnPenaltyBoxDependingOn(roll);
-
         if(currentPlayer.hasAPenalisedTurn()){
             return;
         }
-
         boardReal.advancePlayerPositions(roll, currentPlayer);
 
     }
@@ -40,7 +37,6 @@ public class Game {
 
     public boolean wasCorrectlyAnswered() {
         if (currentPlayer.hasAPenalisedTurn()) {
-            nextPlayer();
             return true;
         }
 
@@ -49,12 +45,11 @@ public class Game {
         printCurrentPlayerStatus();
 
         boolean winner = didPlayerWin();
-        nextPlayer();
         return winner;
     }
 
 
-    private void nextPlayer() {
+    public void nextPlayer() {
         currentPlayer = players.nextPlayerAfter(currentPlayer);
     }
 
@@ -63,10 +58,7 @@ public class Game {
     }
 
     public boolean wrongAnswer() {
-        System.out.println("Question was incorrectly answered");
-        System.out.println(currentPlayer + " was sent to the penalty box");
         currentPlayer.setInPenaltyBox();
-        nextPlayer();
         return true;
     }
 

@@ -37,6 +37,8 @@ public class Player {
 
 
     public void setInPenaltyBox() {
+        System.out.println("Question was incorrectly answered");
+        System.out.println(name + " was sent to the penalty box");
         penaltyState.setInPenaltyBox();
     }
 

@@ -60,7 +60,7 @@ public class GameGoldenMasterTest {
                     notAWinner = aGame.wasCorrectlyAnswered();
                 }
 
-
+                aGame.nextPlayer();
 
             } while (notAWinner);
         }
