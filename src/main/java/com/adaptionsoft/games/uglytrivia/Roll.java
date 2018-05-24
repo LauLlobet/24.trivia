@@ -7,7 +7,7 @@ public class Roll {
 
     private final int rollPrimitive;
 
-    public boolean isSecondroll() {
+    public boolean isPenalityRoll() {
         return secondroll == 7;
     }
 

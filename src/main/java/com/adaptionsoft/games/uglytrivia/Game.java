@@ -14,7 +14,7 @@ public class Game {
     public void playTurn(Roll roll) {
         printRollAndCurrentPlayer(roll);
         applyFirstDiceRules(roll);
-        secondRoll(roll.isSecondroll());
+        secondRoll(roll);
     }
 
     private void applyFirstDiceRules(Roll roll) {
@@ -22,11 +22,11 @@ public class Game {
         if(currentPlayer.hasAPenalisedTurn()){
             return;
         }
-        board.advancePlayerAndAskQuestion(roll, currentPlayer);
+        board.advancePlayerAndAskQuestion(roll, currentPlayer); // TODO: pass primitive to make more explicit no llogic in roll is used
     }
 
-    public void secondRoll(boolean secondroll) {
-        if (secondroll) {
+    public void secondRoll(Roll roll) {
+        if (roll.isPenalityRoll()) {
             currentPlayer.setInPenaltyBox();
             return;
         }
