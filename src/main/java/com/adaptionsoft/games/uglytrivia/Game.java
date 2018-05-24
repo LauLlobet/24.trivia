@@ -21,18 +21,9 @@ public class Game {
 
     public void roll(int rollPrimitive) {
         Roll roll = new Roll(rollPrimitive);
-
         printRollIntroduction(roll);
 
-
-        if (currentPlayer.isInPenaltyBox() && !roll.isEven()) {
-            currentPlayer.remainInPenalityBox();
-        }
-
-        if (currentPlayer.isInPenaltyBox() && roll.isEven()) {
-            currentPlayer.getOutOfPenalityBox();
-
-        }
+        currentPlayer.setToGettingOutOfPenaltyBoxDependingOn(roll);
 
         if(currentPlayer.isNotGettingOutOfPenailtyBox()){
             return;

@@ -76,4 +76,14 @@ public class Player {
     }
 
 
+    public void setToGettingOutOfPenaltyBoxDependingOn(Roll roll) {
+        if (isInPenaltyBox() && !roll.isEven()) {
+            remainInPenalityBox();
+        }
+
+        if (isInPenaltyBox() && roll.isEven()) {
+            getOutOfPenalityBox();
+
+        }
+    }
 }
