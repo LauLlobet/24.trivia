@@ -5,7 +5,6 @@ public class Game {
 
     Board boardReal = new Board();
     QuestionsSource questionsSource = new QuestionsSource();
-
     Player currentPlayer;
 
     public Game() {
@@ -81,7 +80,7 @@ public class Game {
     public boolean wrongAnswer() {
         System.out.println("Question was incorrectly answered");
         System.out.println(currentPlayer + " was sent to the penalty box");
-        currentPlayer.setInPenaltyBox(true);
+        currentPlayer.setInPenaltyBox();
         nextPlayer();
         return true;
     }

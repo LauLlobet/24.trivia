@@ -1,46 +1,11 @@
 package com.adaptionsoft.games.uglytrivia;
 
-public class Player {
-
-    private final String playerName;
-    private int score;
+public class PenaltyState {
     private boolean notGettingOutOfPenaltyBox;
     boolean inPenaltyBox = false;
-    private PenaltyState penaltyState = new PenaltyState();
 
-
-
-    public void setInPenaltyBox() {
-        this.inPenaltyBox = true;
-    }
-
-
-
-    Player(String playerName) {
-        this.playerName = playerName;
-        this.score = 0;
-    }
-
-    public String toString() {
-        return playerName;
-    }
-
-    public void increaseScoreByOne() {
-        score++;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public String getStatusString() {
-        return playerName + " now has "
-                + score
-                + " Gold Coins.";
-    }
-
-    public void announceOwnTurn() {
-        System.out.println(this + " is the current player");
+    public void setInPenaltyBox(boolean inPenaltyBox) {
+        this.inPenaltyBox = inPenaltyBox;
     }
 
     public boolean hasAPenalisedTurn() {
@@ -78,4 +43,5 @@ public class Player {
     public boolean isNotInPenaltyBox() {
         return !inPenaltyBox;
     }
+
 }
