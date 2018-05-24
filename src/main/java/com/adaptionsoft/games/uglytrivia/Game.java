@@ -12,12 +12,12 @@ public class Game {
     }
 
     public void roll(Roll roll, boolean secondRoll) {
-        announceRollAndCurrentPlayer(roll);
-        firstDiceRules(roll);
+        printRollAndCurrentPlayer(roll);
+        applyFirstDiceRules(roll);
         secondRoll(secondRoll);
     }
 
-    private void firstDiceRules(Roll roll) {
+    private void applyFirstDiceRules(Roll roll) {
         currentPlayer.penaliseTurnIfItsOnPenaltyBoxAcordingTo(roll);
         if(currentPlayer.hasAPenalisedTurn()){
             return;
@@ -28,22 +28,16 @@ public class Game {
     public void secondRoll(boolean secondroll) {
         if (secondroll) {
             setCurrentPlayerInPenaltyBox();
-        } else {
-            playTurn();
+            return;
         }
-    }
-
-    public void playTurn() {
-        if (!currentPlayer.hasAPenalisedTurn()) {
-            currentPlayer.increaseScoreByOne();
-        }
+        currentPlayer.increaseScoreByOne();
     }
 
     public void setCurrentPlayerInPenaltyBox() {
         currentPlayer.setInPenaltyBox();
     }
 
-    private void announceRollAndCurrentPlayer(Roll roll) {
+    private void printRollAndCurrentPlayer(Roll roll) {
         currentPlayer.announceOwnTurn();
         roll.announceIt();
 
