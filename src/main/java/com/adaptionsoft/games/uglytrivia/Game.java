@@ -20,7 +20,9 @@ public class Game {
     }
 
     private boolean isScoreApplingRulesTo(Roll roll) {
-        if(currentPlayer.isNotPenalizedTurnAcordingToPenalizingBoxAnd(roll)){
+        PenaltyState penaltyState =  currentPlayer.getPenaltyState(roll);
+        penaltyState.printStateFor(currentPlayer.getName());
+        if(penaltyState.hasANotAPenalisedTurn()){
             board.advancePlayerAndAskQuestion(roll, currentPlayer); // TODO: pass primitive to make more explicit no llogic in roll is used
             if(roll.isNotPenality()){
                 return true;

@@ -21,10 +21,9 @@ public class Player {
         System.out.println(getStatusString());
     }
 
-    public boolean isNotPenalizedTurnAcordingToPenalizingBoxAnd(Roll roll) {
+    public PenaltyState getPenaltyState(Roll roll) {
         PenaltyState penaltyState = new PenaltyState(roll,inPenaltyBox);
-        penaltyState.printStateFor(name);
-        return penaltyState.hasANotAPenalisedTurn();
+        return penaltyState;
     }
 
     public boolean hasNotWon() {
@@ -48,4 +47,7 @@ public class Player {
     }
 
 
+    public String getName() {
+        return name;
+    }
 }
