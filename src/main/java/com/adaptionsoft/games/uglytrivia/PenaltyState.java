@@ -6,14 +6,7 @@ public class PenaltyState {
 
     public PenaltyState(Roll roll, boolean inPenaltyBox){
         this.inPenaltyBox = inPenaltyBox;
-        if(!inPenaltyBox){
-            penalizedTurn = false;
-        }
-        if (!roll.isEven()) {
-            penalizedTurn = true;
-            return;
-        }
-        penalizedTurn = false;
+        penaliseTurnIfItsOnPenaltyBoxDependingOn(roll);
     }
 
     public PenaltyState() {

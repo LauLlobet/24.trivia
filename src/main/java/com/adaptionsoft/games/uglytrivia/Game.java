@@ -14,16 +14,16 @@ public class Game {
     public void playTurn(Roll roll) {
         printRollAndCurrentPlayer(roll);
         applyRules(roll);
-        if(roll.isNotPenality()){
-            currentPlayer.increaseScoreByOne();
-        }
+        setInPenaltyBoxIfRollIsPenalty(roll);
     }
 
     private void applyRules(Roll roll) {
         if(currentPlayer.isNotPenalizedTurnAcordingToPenalizingBoxAnd(roll)){
             board.advancePlayerAndAskQuestion(roll, currentPlayer); // TODO: pass primitive to make more explicit no llogic in roll is used
+            if(roll.isNotPenality()){
+                currentPlayer.increaseScoreByOne();
+            }
         }
-        setInPenaltyBoxIfRollIsPenalty(roll);
 
     }
 

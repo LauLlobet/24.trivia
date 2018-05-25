@@ -4,8 +4,8 @@ public class Player {
 
     private final String name;
     private int score;
-    boolean inPenaltyBox = false;
     private PenaltyState penaltyState = new PenaltyState();
+    private boolean inPenaltyBox = false;
 
     public Player(String playerName) {
         this.name = playerName;
@@ -26,21 +26,20 @@ public class Player {
     }
 
 
-    public boolean hasAPenalisedTurn() {
+    private boolean hasAPenalisedTurn() {
         return penaltyState.hasAPenalisedTurn();
     }
 
     public boolean isNotPenalizedTurnAcordingToPenalizingBoxAnd(Roll roll) {
         penaltyState.penaliseTurnIfItsOnPenaltyBoxDependingOn(roll);
 
-        PenaltyState temp = new PenaltyState(roll,penaltyState.isInPenaltyBox());
+        PenaltyState temp = new PenaltyState(roll,inPenaltyBox);
         temp.printStateFor(name);
-        //penaltyState.printStateFor(name);
-        return ! hasAPenalisedTurn();
+        return ! penaltyState.hasAPenalisedTurn();
     }
 
     public boolean hasNotWon() {
-        return !( score == 6) || inPenaltyBox;
+        return !( score == 6);
     }
 
 
@@ -48,6 +47,7 @@ public class Player {
         System.out.println("Question was incorrectly answered");
         System.out.println(name + " was sent to the penalty box");
         penaltyState.setInPenaltyBox();
+        inPenaltyBox = true;
     }
 
 
