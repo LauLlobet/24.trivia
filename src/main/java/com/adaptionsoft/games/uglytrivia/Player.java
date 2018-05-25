@@ -17,9 +17,6 @@ public class Player {
     }
 
     public void increaseScoreByOne() {
-        if (hasAPenalisedTurn()) {
-            return;
-        }
         System.out.println("Answer was correct!!!!");
         score++;
         System.out.println(getStatusString());
