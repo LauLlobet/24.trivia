@@ -12,19 +12,21 @@ public class Game {
     }
 
     public void playTurn(Roll roll) {
-        printRollAndCurrentPlayer(roll);
-        applyRules(roll);
+        printTurn(roll);
+        if(isScoreApplingRulesTo(roll)){
+            currentPlayer.increaseScoreByOne();
+        }
         setInPenaltyBoxIfRollIsPenalty(roll);
     }
 
-    private void applyRules(Roll roll) {
+    private boolean isScoreApplingRulesTo(Roll roll) {
         if(currentPlayer.isNotPenalizedTurnAcordingToPenalizingBoxAnd(roll)){
             board.advancePlayerAndAskQuestion(roll, currentPlayer); // TODO: pass primitive to make more explicit no llogic in roll is used
             if(roll.isNotPenality()){
-                currentPlayer.increaseScoreByOne();
+                return true;
             }
         }
-
+        return false;
     }
 
     private void setInPenaltyBoxIfRollIsPenalty(Roll roll) {
@@ -33,7 +35,7 @@ public class Game {
         }
     }
 
-    private void printRollAndCurrentPlayer(Roll roll) {
+    private void printTurn(Roll roll) {
         currentPlayer.announceOwnTurn();
         roll.announceIt();
 

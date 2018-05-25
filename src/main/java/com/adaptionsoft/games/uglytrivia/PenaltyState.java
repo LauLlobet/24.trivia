@@ -1,32 +1,33 @@
 package com.adaptionsoft.games.uglytrivia;
 
-public class PenaltyState {
-    private final boolean penalizedTurn;
-    private final boolean inPenaltyBox;
+import static java.lang.System.out;
 
-    public PenaltyState(Roll roll, boolean inPenaltyBox) {
-        this.inPenaltyBox = inPenaltyBox;
-        if (this.inPenaltyBox && roll.isNotEven()) {
-            penalizedTurn = true;
+public class PenaltyState {
+    private final boolean isPenalizedTurn;
+    private final boolean isInPenaltyBox;
+
+    PenaltyState(Roll roll, boolean isInPenaltyBox) {
+        this.isInPenaltyBox = isInPenaltyBox;
+        if (this.isInPenaltyBox && roll.isNotEven()) {
+            isPenalizedTurn = true;
             return;
         }
-        penalizedTurn = false;
+        isPenalizedTurn = false;
     }
 
     public void printStateFor(String name) {
-        if (!inPenaltyBox) {
+        if (!isInPenaltyBox) {
             return;
         }
-        if (!penalizedTurn) {
-            System.out.println(name + " is getting out of the penalty box");
+        if (isPenalizedTurn) {
+            out.println(name + " is not getting out of the penalty box");
             return;
         }
-        System.out.println(name + " is not getting out of the penalty box");
+        out.println(name + " is getting out of the penalty box");
     }
 
-
     public boolean hasANotAPenalisedTurn() {
-        return !penalizedTurn;
+        return !isPenalizedTurn;
     }
 
 }
