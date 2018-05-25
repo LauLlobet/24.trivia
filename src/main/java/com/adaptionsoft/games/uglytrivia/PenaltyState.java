@@ -9,13 +9,8 @@ public class PenaltyState {
         penaliseTurnIfItsOnPenaltyBoxDependingOn(roll);
     }
 
-    public PenaltyState() {
-
-    }
-
-
     public void printStateFor(String name){
-        if(isNotInPenaltyBox()){
+        if(!inPenaltyBox){
             return;
         }
         if(!penalizedTurn) {
@@ -26,42 +21,25 @@ public class PenaltyState {
     }
 
     public void penaliseTurnIfItsOnPenaltyBoxDependingOn(Roll roll) {
-        if (isInPenaltyBox()) {
+        if (inPenaltyBox) {
             penaliseTurnDependingOn(roll);
         }
+    }
+
+
+    public boolean hasANotAPenalisedTurn() {
+        return !penalizedTurn;
     }
 
     //--
 
     private void penaliseTurnDependingOn(Roll roll) {
         if (!roll.isEven()) {
-            setPenalisedTurn();
+            penalizedTurn = true;
             return;
         }
-        setNonPenalisedTurn();
-    }
-
-    public boolean hasAPenalisedTurn() {
-        return penalizedTurn;
-    }
-
-    public void setInPenaltyBox() {
-        this.inPenaltyBox = true;
-    }
-
-    private boolean isNotInPenaltyBox() {
-        return !inPenaltyBox;
-    }
-
-    private void setNonPenalisedTurn() {
         penalizedTurn = false;
     }
 
-    private void setPenalisedTurn() {
-        penalizedTurn = true;
-    }
 
-    boolean isInPenaltyBox() {
-        return inPenaltyBox;
-    }
 }
