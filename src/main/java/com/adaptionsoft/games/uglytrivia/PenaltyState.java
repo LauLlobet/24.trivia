@@ -4,6 +4,23 @@ public class PenaltyState {
     private boolean penalizedTurn;
     private boolean inPenaltyBox = false;
 
+    public PenaltyState(Roll roll, boolean inPenaltyBox){
+        this.inPenaltyBox = inPenaltyBox;
+        if(!inPenaltyBox){
+            penalizedTurn = false;
+        }
+        if (!roll.isEven()) {
+            penalizedTurn = true;
+            return;
+        }
+        penalizedTurn = false;
+    }
+
+    public PenaltyState() {
+
+    }
+
+
     public void printStateFor(String name){
         if(isNotInPenaltyBox()){
             return;
@@ -51,7 +68,7 @@ public class PenaltyState {
         penalizedTurn = true;
     }
 
-    private boolean isInPenaltyBox() {
+    boolean isInPenaltyBox() {
         return inPenaltyBox;
     }
 }

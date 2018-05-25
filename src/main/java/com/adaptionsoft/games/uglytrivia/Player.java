@@ -32,7 +32,10 @@ public class Player {
 
     public boolean isNotPenalizedTurnAcordingToPenalizingBoxAnd(Roll roll) {
         penaltyState.penaliseTurnIfItsOnPenaltyBoxDependingOn(roll);
-        penaltyState.printStateFor(name);
+
+        PenaltyState temp = new PenaltyState(roll,penaltyState.isInPenaltyBox());
+        temp.printStateFor(name);
+        //penaltyState.printStateFor(name);
         return ! hasAPenalisedTurn();
     }
 
