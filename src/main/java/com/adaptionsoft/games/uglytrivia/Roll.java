@@ -10,8 +10,8 @@ public class Roll {
         this.secondroll = secondroll;
     }
 
-    public boolean isEven(){
-        return rollPrimitive % 2 != 0;
+    public boolean isNotEven(){
+        return rollPrimitive % 2 == 0;
     }
 
     @Override
