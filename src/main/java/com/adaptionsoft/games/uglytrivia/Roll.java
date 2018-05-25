@@ -1,16 +1,7 @@
 package com.adaptionsoft.games.uglytrivia;
 
 public class Roll {
-    public int getRollPrimitive() {
-        return rollPrimitive;
-    }
-
     private final int rollPrimitive;
-
-    public boolean isPenalityRoll() {
-        return secondroll == 7;
-    }
-
     private final int secondroll;
 
     public Roll(int rollPrimitive, int secondroll) {
@@ -30,5 +21,17 @@ public class Roll {
 
     public void announceIt() {
         System.out.println("They have rolled a " + rollPrimitive);
+    }
+
+    public boolean isNotPenality() {
+        return ! isPenality();
+    }
+
+    public boolean isPenality() {
+        return secondroll == 7;
+    }
+
+    public int getRollPrimitive() {
+        return rollPrimitive;
     }
 }

@@ -30,9 +30,10 @@ public class Player {
         return penaltyState.hasAPenalisedTurn();
     }
 
-    public void penaliseTurnIfItsOnPenaltyBoxAcordingTo(Roll roll) {
+    public boolean isNotPenalizedTurnAcordingToPenalizingBoxAnd(Roll roll) {
         penaltyState.penaliseTurnIfItsOnPenaltyBoxDependingOn(roll);
         penaltyState.printStateFor(name);
+        return ! hasAPenalisedTurn();
     }
 
     public boolean hasNotWon() {

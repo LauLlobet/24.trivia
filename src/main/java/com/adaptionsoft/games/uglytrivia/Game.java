@@ -13,24 +13,24 @@ public class Game {
 
     public void playTurn(Roll roll) {
         printRollAndCurrentPlayer(roll);
-        applyFirstDiceRules(roll);
-        secondRoll(roll);
+        applyRules(roll);
+        if(roll.isNotPenality()){
+            currentPlayer.increaseScoreByOne();
+        }
     }
 
-    private void applyFirstDiceRules(Roll roll) {
-        currentPlayer.penaliseTurnIfItsOnPenaltyBoxAcordingTo(roll);
-        if(!currentPlayer.hasAPenalisedTurn()){
+    private void applyRules(Roll roll) {
+        if(currentPlayer.isNotPenalizedTurnAcordingToPenalizingBoxAnd(roll)){
             board.advancePlayerAndAskQuestion(roll, currentPlayer); // TODO: pass primitive to make more explicit no llogic in roll is used
         }
-        if (roll.isPenalityRoll()) {
-            currentPlayer.setInPenaltyBox();
-            return;
-        }
-        currentPlayer.increaseScoreByOne();
+        setInPenaltyBoxIfRollIsPenalty(roll);
+
     }
 
-    private void secondRoll(Roll roll) {
-
+    private void setInPenaltyBoxIfRollIsPenalty(Roll roll) {
+        if (roll.isPenality()) {
+            currentPlayer.setInPenaltyBox();
+        }
     }
 
     private void printRollAndCurrentPlayer(Roll roll) {
