@@ -6,7 +6,7 @@ public class Board {
     private Hashtable<Player, Integer> positionFor = new Hashtable<Player, Integer>();
     private QuestionsSource questionsSource = new QuestionsSource();
 
-    public void advancePlayerAndAskQuestion(Roll roll, Player player){
+    public void advancePlayer(Roll roll, Player player){
         int newPosition = positionFor.get(player)+ roll.getRollPrimitive();
         if (newPosition > 11){
             newPosition = newPosition - 12;

@@ -19,7 +19,7 @@ public class Roll {
         return ""+rollPrimitive;
     }
 
-    public void announceIt() {
+    public void print() {
         System.out.println("They have rolled a " + rollPrimitive);
     }
 

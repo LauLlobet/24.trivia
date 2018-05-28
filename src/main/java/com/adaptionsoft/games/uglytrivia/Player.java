@@ -21,8 +21,9 @@ public class Player {
         System.out.println(getStatusString());
     }
 
-    public PenaltyState getPenaltyState(Roll roll) {
-        PenaltyState penaltyState = new PenaltyState(roll,inPenaltyBox);
+    public PenaltyStateFromPlayer getAndPrintPenaltyState(Roll roll) {
+        PenaltyStateFromPlayer penaltyState = new PenaltyStateFromPlayer(roll,inPenaltyBox, name);
+        penaltyState.printState();
         return penaltyState;
     }
 
@@ -31,7 +32,10 @@ public class Player {
     }
 
 
-    public void setInPenaltyBox() {
+    public void setInPenaltyBoxDependingOn(Roll roll) {
+        if(roll.isNotPenality()){
+            return;
+        }
         System.out.println("Question was incorrectly answered");
         System.out.println(name + " was sent to the penalty box");
         inPenaltyBox = true;
@@ -42,7 +46,7 @@ public class Player {
         return name + " now has " + score + " Gold Coins.";
     }
 
-    public void announceOwnTurn() {
+    public void printOwnTurn() {
         System.out.println(name + " is the current player");
     }
 
